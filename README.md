@@ -3,18 +3,18 @@
 This agent will run on each of the compute nodes as a daemon and 
 will periodically report to monitoring server with relevant system information.
 
-## Dependencies 
-* python3 
-* psutil - https://pypi.org/project/psutil/
-* python-daemon - https://pypi.org/project/python-daemon/
- 
-## Usage
-* Clone repository
-* Install all dependencies
-* run ```beacon.py```
-
+## Installation 
 ```shell script
-python3 /path/to/beacon.py
+sudo apt install python3-pip
+git clone https://github.com/Ormly/ParallelNano_Lisa_Beacon_Agent.git
+cd ParallelNano_Lisa_Beacon_Agent
+python3 setup install --user
+``` 
+
+## Usage
+```shell script
+cd ParallelNano_Lisa_Beacon_Agent/beacon
+python3 beacon.py
 ```
 
 To kill daemon:
@@ -39,8 +39,10 @@ Agent is configured using the ```config.json``` file residing in the same librar
 * ```server_port``` - port of the beacon server component
 * ```interval``` - seconds two wait before sending the next beacon 
 
+Agent should be restarted to apply changes to config file
+
 ## Beacon format
-System information sent as part of the beacon is a pickled dictionary with the following structure
+System information sent as part of the beacon is a [pickled](https://docs.python.org/3.6/library/pickle.html) dictionary with the following structure
 ```json
 {
   "platform": "type of platform",
