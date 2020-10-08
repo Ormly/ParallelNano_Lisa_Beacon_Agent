@@ -39,7 +39,7 @@ Agent is configured using the ```config.json``` file residing in the same librar
 * ```server_port``` - port of the beacon server component
 * ```interval``` - seconds two wait before sending the next beacon 
 
-Agent should be restarted to apply changes to config file
+**Agent should be restarted to apply changes to config file**
 
 ## Beacon format
 System information sent as part of the beacon is a [pickled](https://docs.python.org/3.6/library/pickle.html) dictionary with the following structure
