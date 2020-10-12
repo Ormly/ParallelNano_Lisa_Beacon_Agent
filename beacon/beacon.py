@@ -42,6 +42,10 @@ class SystemInformation:
         self._sys_info['system'] = platform.system()
         self._sys_info['cpu'] = platform.processor()
 
+        hostname = socket.gethostname()
+        self._sys_info['hostname'] = hostname
+        self._sys_info['ip_address'] = socket.gethostbyname(hostname)
+
     def _update(self):
         """
         Loads the dynamic components oof system info, has to be called before requesting updated information
@@ -72,8 +76,6 @@ class Beacon:
             payload = self.sys_info.update_and_serialize()
             self._send_sys_info(payload)
             time.sleep(self.interval)
-            # print("something")
-            # time.sleep(1)
 
     def _send_sys_info(self, payload: bytes):
         sent_bytes = 0
