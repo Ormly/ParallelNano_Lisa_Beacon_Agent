@@ -8,7 +8,7 @@ will periodically report to monitoring server with relevant system information.
 sudo apt install python3-pip
 git clone https://github.com/Ormly/ParallelNano_Lisa_Beacon_Agent.git
 cd ParallelNano_Lisa_Beacon_Agent
-python3 setup install --user
+python3 setup.py install --user
 ``` 
 
 ## Usage
