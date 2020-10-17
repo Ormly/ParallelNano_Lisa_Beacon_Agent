@@ -42,9 +42,7 @@ class SystemInformation:
         self._sys_info['system'] = platform.system()
         self._sys_info['cpu'] = platform.processor()
 
-        hostname = socket.gethostname()
-        self._sys_info['hostname'] = hostname
-        self._sys_info['ip_address'] = socket.gethostbyname(hostname)
+        self._sys_info['hostname'] = socket.gethostname()
 
     def _update(self):
         """
