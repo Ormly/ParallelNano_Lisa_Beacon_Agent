@@ -11,6 +11,7 @@ import pickle
 import json
 
 import psutil
+import GPUtil
 import daemon
 
 
@@ -41,6 +42,7 @@ class SystemInformation:
         self._sys_info['platform'] = platform.platform()
         self._sys_info['system'] = platform.system()
         self._sys_info['cpu'] = platform.processor()
+        self._sys_info['gpu'] = self._get_gpu_utilization_if_exists()
 
         self._sys_info['hostname'] = socket.gethostname()
 
@@ -57,6 +59,17 @@ class SystemInformation:
         :return:
         """
         return pickle.dumps(self._sys_info)
+
+    @staticmethod
+    def _get_gpu_utilization_if_exists(self) -> str:
+        load = "Unknown"
+        try:
+            first_gpu = GPUtil.getFirstAvailable()
+            if first_gpu:
+                load = str(first_gpu.load)
+        except Exception:
+            pass
+        return load
 
 
 class Beacon:
