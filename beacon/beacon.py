@@ -60,7 +60,7 @@ class SystemInformation:
         return pickle.dumps(self._sys_info)
 
     @staticmethod
-    def _get_gpu_utilization_if_exists(self) -> str:
+    def _get_gpu_utilization_if_exists() -> str:
         load = "Unknown"
         try:
             first_gpu = GPUtil.getFirstAvailable()
