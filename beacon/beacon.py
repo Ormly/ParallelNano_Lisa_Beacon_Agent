@@ -42,8 +42,6 @@ class SystemInformation:
         self._sys_info['platform'] = platform.platform()
         self._sys_info['system'] = platform.system()
         self._sys_info['cpu'] = platform.processor()
-        self._sys_info['gpu'] = self._get_gpu_utilization_if_exists()
-
         self._sys_info['hostname'] = socket.gethostname()
 
     def _update(self):
@@ -52,6 +50,7 @@ class SystemInformation:
         """
         self._sys_info['cpu_usage'] = psutil.cpu_percent(0.2)
         self._sys_info['mem_usage'] = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total
+        self._sys_info['gpu'] = self._get_gpu_utilization_if_exists()
 
     def _serialize(self) -> bytes:
         """
