@@ -9,6 +9,7 @@ import platform
 import time
 import pickle
 import json
+import pathlib
 
 import psutil
 import GPUtil
@@ -128,14 +129,14 @@ class BeaconFactory:
 
 def main():
     factory = BeaconFactory()
-    beacon = factory.from_config_file("config.json")
+    beacon = factory.from_config_file(str(pathlib.Path(__file__).parent) + "/config.json")
     beacon.start()
 
 
 if __name__ == '__main__':
     # start beacon as daemon
     # TODO: optionally get config file path from stdin
-    config_file = open("config.json", 'r')
+    config_file = open(str(pathlib.Path(__file__).parent) + "/config.json", "r")
     with daemon.DaemonContext(
             files_preserve=[config_file],
             chroot_directory=None,
