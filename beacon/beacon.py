@@ -50,7 +50,7 @@ class SystemInformation:
         Loads the dynamic components oof system info, has to be called before requesting updated information
         """
         self._sys_info['cpu_usage'] = psutil.cpu_percent(0.2)
-        self._sys_info['mem_usage'] = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total
+        self._sys_info['mem_usage'] = psutil.virtual_memory().percent - psutil.swap_memory().percent
         self._sys_info['gpu'] = self._get_gpu_utilization_if_exists()
 
     def _serialize(self) -> bytes:
